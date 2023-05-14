@@ -22,10 +22,6 @@ body {
   color: #e7f3fa;
 }
 
-.container {
-  display: flex;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  margin: 50px;
-  gap: 20px;
+h1 {
+  margin: 50px 0px;
 }
