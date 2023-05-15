@@ -1,38 +1,40 @@
 import Post from './Post'
 import NewPost from './NewPost'
 import Modal from './Modal'
-import { useState } from 'react'
 import styles from './PostList.module.css'
+import { useState } from 'react'
 
 function PostList({onFinishPost, isPosting}) {
-    const [body, setBody] = useState('')
-    const [name, setName] = useState('')
 
-    const changeBody = (event) => {
-        setBody(event.target.value)
-        console.log(event.target.value)
-    }
+    const [posts, setPosts] = useState([])
 
-    const changeName = (event) => {
-        setName((event.target.value).length > 0 ? `- ${event.target.value}` : '')
-        console.log(event.target.value)
+    const addPostHandler = (postData) => {
+        setPosts((existingPost) => [postData, ...existingPost])
     }
 
     return (
         <div>
-            {isPosting && (
-            <Modal onClose={onFinishPost}>
-                <NewPost 
-                    onBodyChange={changeBody} 
-                    onNameChange={changeName} 
-                />
-            </Modal>
-            )}
-            <ul className={styles.container}>
-                <Post body='Golf is the best!' name='- Jack'  />
-                <Post body='React.js is awesome!' name='- Laura' />
-                <Post body={body}  name={name} />
-            </ul>
+            {isPosting && 
+                <Modal onClose={onFinishPost}>
+                    <NewPost 
+                        onCancel={onFinishPost}
+                        onNewPost={addPostHandler} 
+                    />
+                </Modal>
+            }
+            {posts.length > 0 &&
+                <ul className={styles.container}>
+                    {posts.map((item, index) => 
+                        <Post body={item.body} name={item.name} key={index} />
+                    )}
+                </ul>
+            }
+            {posts.length == 0 &&
+                <div style={{marginTop: '50px', textAlign: 'center', color: 'white'}}>
+                    <h2>There are No Posts Yet</h2>
+                    <p>Start adding some!</p>
+                </div>
+            }
         </div>
     )
 }
