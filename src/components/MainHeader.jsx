@@ -13,7 +13,7 @@ function MainHeader({onCreatePost}) {
                 </h1>
                 <p>
                     <button className={styles.button} onClick={onCreatePost}>
-                        <MdPostAdd size={18} />
+                        <MdPostAdd size={19} />
                         New Post
                     </button>
                 </p>
