@@ -1,11 +1,30 @@
-import PostList from "./components/PostList"
 
-function App() {
+import { useState } from "react"
+import PostList from "./components/PostList"
+import MainHeader from "./components/MainHeader"
+
+function App({}) {
+
+  const [displayModal, setDisplayModal] = useState(false)
+
+  const showModal = () => {
+    setDisplayModal(true)
+  }
+
+  const hideModal = () => {
+    setDisplayModal(false)
+  }
+
   return (
+    <>
+      <MainHeader onCreatePost={showModal}/>
       <main>
-        <h1>Say It Loud, Share It Proud!</h1>
-          <PostList />
+          <PostList 
+            isPosting={displayModal} 
+            onFinishPost={hideModal} 
+          />
       </main>
+    </>
   )
 }
 

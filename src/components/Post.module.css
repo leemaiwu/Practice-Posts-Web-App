@@ -3,7 +3,7 @@
     flex-direction: column;
     justify-content: center;
     width: 300px;
-    border: 1px solid rgba(255, 255, 255, 0.558);
+    border: 0.5px solid rgba(255, 255, 255, 0.558);
     border-radius: 15px;
     background-image: radial-gradient(ellipse at top left, #aaaaaa40, #41414132);
     backdrop-filter: blur 10px;

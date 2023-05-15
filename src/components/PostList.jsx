@@ -4,14 +4,9 @@ import Modal from './Modal'
 import { useState } from 'react'
 import styles from './PostList.module.css'
 
-function PostList() {
-    const [displayModal, setDisplayModal] = useState(true)
+function PostList({onFinishPost, isPosting}) {
     const [body, setBody] = useState('')
     const [name, setName] = useState('')
-
-    const hideModal = () => {
-        setDisplayModal(false)
-    }
 
     const changeBody = (event) => {
         setBody(event.target.value)
@@ -23,12 +18,10 @@ function PostList() {
         console.log(event.target.value)
     }
 
-    let modalView
-
     return (
         <div>
-            {displayModal && (
-            <Modal onClose={hideModal}>
+            {isPosting && (
+            <Modal onClose={onFinishPost}>
                 <NewPost 
                     onBodyChange={changeBody} 
                     onNameChange={changeName} 
@@ -36,8 +29,8 @@ function PostList() {
             </Modal>
             )}
             <ul className={styles.container}>
-                <Post name='- Jack' body='Golf is the best!' />
-                <Post name='- Laura' body='React.js is awesome!' />
+                <Post body='Golf is the best!' name='- Jack'  />
+                <Post body='React.js is awesome!' name='- Laura' />
                 <Post body={body}  name={name} />
             </ul>
         </div>

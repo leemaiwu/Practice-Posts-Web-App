@@ -4,11 +4,10 @@ function Modal({children, onClose}) {
 
     return (
         <div>
-            <div className={styles.backdrop} onClick={onClose}>
+            <div className={styles.backdrop} onClick={onClose} />
             <dialog open className={styles.modal}>
                 {children}
             </dialog>
-            </div>
         </div>
     )
 }
